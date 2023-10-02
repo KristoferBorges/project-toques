@@ -1,0 +1,21 @@
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+
+<ScreenManager>:
+    transition: NoTransition()
+    MenuPrincipal:
+        id: menu_1
+        name: 'menu_1'
+
+    
+<MenuPrincipal>:
+    GridLayout:
+        cols: 1
+        spacing: 6
+        padding: 10
+
+        Button:
+            text: 'START'
+            font_size: root.font_text_menu
+            color: 1, 0, 1, 1
+            on_release:
+                root.manager.current = 'seletor'
