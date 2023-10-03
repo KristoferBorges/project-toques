@@ -1,21 +1,59 @@
 #:import NoTransition kivy.uix.screenmanager.NoTransition
 
+<Button>:
+    border: (2, 2, 2, 2)
+    border_width: 9
+    border_color: 1, 1, 0, 1
+    border_radius: [90]
+
 <ScreenManager>:
     transition: NoTransition()
-    MenuPrincipal:
-        id: menu_1
-        name: 'menu_1'
+    MenuStart:
+        id: menu_start
+        name: 'menu_start'
 
-    
-<MenuPrincipal>:
+    MenuSex:
+        id: menu_sex
+        name: 'menu_sex'
+
+
+<MenuStart>:
     GridLayout:
         cols: 1
         spacing: 6
-        padding: 10
+        padding: 100
 
         Button:
             text: 'START'
-            font_size: root.font_text_menu
+            font_size: root.font_title
+            color: 1, 0, 1, 1
+            on_release:
+                root.manager.current = 'menu_sex'
+
+
+<MenuSex>
+    GridLayout:
+        cols: 1
+        spacing: 2
+        padding: 30
+
+        Button:
+            text: 'Homem'
+            font_size: root.font_title
+            color: 1, 0, 1, 1
+            on_release:
+                root.manager.current = 'seletor'
+        
+        Button:
+            text: 'Mulher'
+            font_size: root.font_title
+            color: 1, 0, 1, 1
+            on_release:
+                root.manager.current = 'seletor'
+
+        Button:
+            text: 'Random'
+            font_size: root.font_title
             color: 1, 0, 1, 1
             on_release:
                 root.manager.current = 'seletor'

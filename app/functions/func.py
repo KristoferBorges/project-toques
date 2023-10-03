@@ -11,6 +11,12 @@ def definitionOfTime():
     return time
 
 
+def definitionOfSex():
+    listOfSex = ['Masculino', 'Feminino']
+    sexo = random.choice(listOfSex)
+    return sexo
+
+
 def whatToDo():
     listOfRounds = {}
     listOfOptions = ['Beijos', 'Mordidas', 'Chupões', 'Lambidas', 'Roçar']
@@ -23,4 +29,7 @@ def whatToDo():
     print(listOfRounds)
     return listOfRounds
 
-whatToDo()
+#whatToDo()
+#definitionOfSex()
+#definitionOfRounds()
+#definitionOfTime()

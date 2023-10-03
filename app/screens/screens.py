@@ -22,10 +22,22 @@ else:
     font_title = 80
 
 
-class MenuPrincipal(Screen):
+class MenuStart(Screen):
     """
     Menu com as opções principais, NovosRegistros, LimparDados, ConsultaDeListas,
     Criar Backup e FecharPrograma.
+    """
+    font_column = NumericProperty(font_column)
+    font_row = NumericProperty(font_row)
+    font_button = NumericProperty(font_button)
+    font_text = NumericProperty(font_text)
+    font_text_menu = NumericProperty(font_text_menu)
+    font_title = NumericProperty(font_title)
+
+
+class MenuSex(Screen):
+    """
+    Menu com as opções de sexo, Masculino, Feminino e aleatório.
     """
     font_column = NumericProperty(font_column)
     font_row = NumericProperty(font_row)
