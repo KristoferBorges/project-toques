@@ -19,7 +19,7 @@ def definitionOfSex():
 
 def whatToDo():
     listOfRounds = {}
-    listOfOptions = ['Beijos', 'Mordidas', 'Chupões', 'Lambidas', 'Roçar']
+    listOfOptions = ['Beijos', 'Mordidas-Coxa', 'Mordidas-Bunda', 'Chupões', 'Chupões-X', 'Lambidas-Pescoço', 'Lambidas', 'Roçar']
     rounds = definitionOfRounds()
     
     for round in range(rounds):
