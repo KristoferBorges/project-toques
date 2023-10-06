@@ -2,6 +2,7 @@ import platform
 from kivy.core.window import Window
 from app.screens.screens import MenuStart
 from app.screens.screens import MenuSex
+from app.screens.screens import ExibirResultados
 
 class Setup:
     def __init__(self):
@@ -31,3 +32,4 @@ class Setup:
         # Coloque aqui o código que deseja executar na função run.
         menu_principal = MenuStart()
         menu_sex = MenuSex()
+        exibir_resultados = ExibirResultados()

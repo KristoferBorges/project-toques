@@ -1,4 +1,5 @@
 import platform
+import random
 from kivy.uix.screenmanager import Screen
 from kivy.properties import NumericProperty
 
@@ -24,8 +25,7 @@ else:
 
 class MenuStart(Screen):
     """
-    Menu com as opções principais, NovosRegistros, LimparDados, ConsultaDeListas,
-    Criar Backup e FecharPrograma.
+    Botão de iniciar o jogo.
     """
     font_column = NumericProperty(font_column)
     font_row = NumericProperty(font_row)
@@ -33,6 +33,10 @@ class MenuStart(Screen):
     font_text = NumericProperty(font_text)
     font_text_menu = NumericProperty(font_text_menu)
     font_title = NumericProperty(font_title)
+
+
+class SharedData:
+    sexo = None
 
 
 class MenuSex(Screen):
@@ -45,3 +49,64 @@ class MenuSex(Screen):
     font_text = NumericProperty(font_text)
     font_text_menu = NumericProperty(font_text_menu)
     font_title = NumericProperty(font_title)
+
+    def definitionOfSexMen(self):
+        self.sexo = 'Masculino'
+        SharedData.sexo = self.sexo
+    
+    
+    def definitionOfSexWomen(self):
+        self.sexo = 'Feminino'
+        SharedData.sexo = self.sexo
+    
+
+    def definitionOfSexRandom(self):
+        listOfSex = ['Masculino', 'Feminino']
+        self.sexo = random.choice(listOfSex)
+        SharedData.sexo = self.sexo
+
+class ExibirResultados(Screen):
+    """
+    Menu com os resultados das variantes.
+    """
+
+    font_column = NumericProperty(font_column)
+    font_row = NumericProperty(font_row)
+    font_button = NumericProperty(font_button)
+    font_text = NumericProperty(font_text)
+    font_text_menu = NumericProperty(font_text_menu)
+    font_title = NumericProperty(font_title)
+
+    def definitionOfRounds(self):
+        rounds = random.randint(1, 3)
+        return rounds
+
+
+    def definitionOfTime(self):
+        time = random.randint(10, 40)
+        return time
+
+
+    def clearLabel(self):
+        self.ids.label_sexo.text = ''
+        self.ids.label_result.text = ''
+
+
+    def whatToDo(self):
+        listOfRounds = {}
+        listOfOptions = ['Beijos', 'Mordidas-Coxa', 'Mordidas-Bunda', 'Chupões', 'Chupões-X', 'Lambidas-Pescoço', 'Lambidas', 'Roçar']
+        rounds = self.definitionOfRounds()
+        
+        for round in range(rounds):
+            time = self.definitionOfTime()
+            round = random.choice(listOfOptions)
+            listOfRounds[round] = time
+        print(SharedData.sexo)
+        print(listOfRounds)
+
+        formatted_text = "\n".join([f"{key}: {value} Segundos" for key, value in listOfRounds.items()])
+
+        self.ids.label_sexo.text = SharedData.sexo
+        self.ids.label_result.text = formatted_text
+        return listOfRounds
+    
