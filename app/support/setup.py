@@ -30,6 +30,6 @@ class Setup:
 
     def run(self):
         # Coloque aqui o código que deseja executar na função run.
-        menu_principal = MenuStart()
+        menu_start = MenuStart()
         menu_sex = MenuSex()
         exibir_resultados = ExibirResultados()

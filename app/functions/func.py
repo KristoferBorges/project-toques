@@ -1,4 +1,0 @@
-#whatToDo()
-#definitionOfSex()
-#definitionOfRounds()
-#definitionOfTime()
