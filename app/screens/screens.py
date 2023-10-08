@@ -157,7 +157,11 @@ class ExibirResultados(Screen):
         total = 0
 
         self.listOfRounds = {}
-        listOfOptions = ['Beijos', 'Mordidas-Coxa', 'Mordidas-Bunda', 'Chupões', 'Chupões-X', 'Lambidas-Pescoço', 'Lambidas', 'Roçar']
+        listOfOptions = [
+            'Beijos', 'Mordidas', 'Mordidas-Pescoço', 'Mordidas-Bunda', 'Chupões', 
+            'Chupões-X', 'Lambidas-X', 'Lambidas-Pescoço', 'Lambidas', 'Roçar',
+            'Oral', 'Posição_69', 'Drink', 'DJ/Punheta'
+            ]
         rounds = self.definitionOfRounds()
         
         for round in range(rounds):
@@ -166,9 +170,12 @@ class ExibirResultados(Screen):
             self.listOfRounds[round] = time
         print(SharedData.sexo)
         print(self.listOfRounds)
-
-        formatted_text = "\n".join([f"{key}: {value} Seg.." for key, value in self.listOfRounds.items()])
-
+        
+        printTotal = 0
+        for valor in self.listOfRounds.values():
+            printTotal += valor
+        formatted_text = "\n".join([f"{key} = {value} Seg.." for key, value in self.listOfRounds.items()]) + f"\n\nTotal = {printTotal} Seg.."
+        
         if SharedData.sexo == 'Feminino':
             self.ids.label_sexo.color = [1, 0.3, 0.3, 1]
             self.ids.label_sexo.text = SharedData.sexo
@@ -204,11 +211,11 @@ class ExibirResultados(Screen):
             self.ids.button_comecar.background_color = 1, 0, 0, 1
             self.ids.label_title.text = 'J O G A N D O'
 
-            global total  # Declare total como uma variável global
+            global total
             total = sum(self.listOfRounds.values())
 
             def atualizar_contagem(dt):
-                global total  # Acesse a variável global
+                global total 
                 self.ids.label_result_timing.text = str(total)
                 self.ids.label_result_timing.font_size = font_timing
                 total -= 1
