@@ -15,7 +15,7 @@ class Setup:
             font_text = 35
             font_text_menu = 48
             font_title = 60
-            Window.size = (1130, 810)
+            Window.size = (930, 710)
 
         else:
             sistema_windows = False

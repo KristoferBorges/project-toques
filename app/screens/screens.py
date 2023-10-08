@@ -141,7 +141,12 @@ class ExibirResultados(Screen):
 
         formatted_text = "\n".join([f"{key}: {value} Segundos" for key, value in listOfRounds.items()])
 
-        self.ids.label_sexo.text = SharedData.sexo
+        if SharedData.sexo == 'Feminino':
+            self.ids.label_sexo.color = [1, 0.3, 0.3, 1]
+            self.ids.label_sexo.text = SharedData.sexo
+        else:
+            self.ids.label_sexo.color = [0, 1, 1, 1]
+            self.ids.label_sexo.text = SharedData.sexo
         self.ids.label_result.text = formatted_text
 
         self.start = True

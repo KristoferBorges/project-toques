@@ -27,12 +27,13 @@
     GridLayout:
         cols: 1
         spacing: 6
-        padding: 10
+        padding: 0
 
         Button:
             text: 'START'
             font_size: root.font_title
-            color: 1, 0, 1, 1
+            color: 1, 1, 0, 1
+            background_color: 0.9, 0.2, 0.8, 1
             on_release:
                 root.startButton()
                 root.manager.current = 'menu_sex'
@@ -48,6 +49,7 @@
             text: 'Homem'
             font_size: root.font_title
             color: 1, 0, 1, 1
+            background_color: 1, 0, 0, 1
             on_release:
                 root.manager.current = 'exibir_resultados'
                 root.definitionOfSexMen()
@@ -56,6 +58,7 @@
             text: 'Mulher'
             font_size: root.font_title
             color: 1, 0, 1, 1
+            background_color: 1, 0, 0, 1
             on_release:
                 root.manager.current = 'exibir_resultados'
                 root.definitionOfSexWomen()
@@ -64,24 +67,35 @@
             text: 'Random'
             font_size: root.font_title
             color: 1, 0, 1, 1
+            background_color: 1, 0, 0, 0
             on_release:
                 root.manager.current = 'exibir_resultados'
                 root.definitionOfSexRandom()
 
 
 <ExibirResultados>
+    FloatLayout:
+
+        Image:
+            source: 'app/media/images/pexels-philippe-donn-1257860.jpg'  # Substitua pelo caminho da sua imagem
+            allow_stretch: True  # Esticar a imagem para preencher o espaço
+            keep_ratio: False  # Não manter a proporção original da imagem
+
     BoxLayout:
         orientation: 'vertical'
         
         Label:
-            text: 'RESULTADO'
+            text: '< R E S U L T A D O >'
             font_size: root.font_title
-            height: dp(100)
-        
+            size_hint_y: 0.5
+            height: dp(10)
+
         Label:
             id: label_sexo
             text: ''
             font_size: root.font_text
+            size_hint_y: 0.1
+            background_color: 1, 1, 1, 1
             height: dp(40)
         
         Label:
