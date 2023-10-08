@@ -5,7 +5,9 @@ import random
 import time
 
 class Tela(App):
-
+    """
+    Classe principal do aplicativo v1.0-alpha.
+    """
     def build(self):
         self.title = 'Toques'
         Setup()
