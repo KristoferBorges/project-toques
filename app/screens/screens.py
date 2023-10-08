@@ -10,6 +10,7 @@ from app import click_button, tuin, startGame, back_button, finish_time
 # Verifica se o usuário está usando Windows
 if platform.system() == "Windows":
     sistema_windows = True
+    font_start = 110
     font_column = 18
     font_row = 16
     font_button = 35
@@ -17,14 +18,18 @@ if platform.system() == "Windows":
     font_text_menu = 48
     font_title = 60
 
+    font_timing = 190
 else:
     sistema_windows = False
+    font_start = 135
     font_column = 20
     font_row = 19
-    font_button = 55
+    font_button = 65
     font_text = 40
-    font_text_menu = 60
-    font_title = 80
+    font_text_menu = 45
+    font_title = 70
+
+    font_timing = 190
 
 
 class MenuStart(Screen):
@@ -37,6 +42,8 @@ class MenuStart(Screen):
     font_text = NumericProperty(font_text)
     font_text_menu = NumericProperty(font_text_menu)
     font_title = NumericProperty(font_title)
+    font_start = NumericProperty(font_start)
+    font_timing = NumericProperty(font_timing)
 
     def startButton(self):
         click_button.play()
@@ -57,6 +64,8 @@ class MenuSex(Screen):
     font_text = NumericProperty(font_text)
     font_text_menu = NumericProperty(font_text_menu)
     font_title = NumericProperty(font_title)
+    font_start = NumericProperty(font_start)
+    font_timing = NumericProperty(font_timing)
 
     def definitionOfSexMen(self):
         """
@@ -100,6 +109,8 @@ class ExibirResultados(Screen):
     font_text = NumericProperty(font_text)
     font_text_menu = NumericProperty(font_text_menu)
     font_title = NumericProperty(font_title)
+    font_start = NumericProperty(font_start)
+    font_timing = NumericProperty(font_timing)
 
     def definitionOfRounds(self):
         """
@@ -156,7 +167,7 @@ class ExibirResultados(Screen):
         print(SharedData.sexo)
         print(self.listOfRounds)
 
-        formatted_text = "\n".join([f"{key}: {value} Segundos" for key, value in self.listOfRounds.items()])
+        formatted_text = "\n".join([f"{key}: {value} Seg.." for key, value in self.listOfRounds.items()])
 
         if SharedData.sexo == 'Feminino':
             self.ids.label_sexo.color = [1, 0.3, 0.3, 1]
@@ -199,10 +210,12 @@ class ExibirResultados(Screen):
             def atualizar_contagem(dt):
                 global total  # Acesse a variável global
                 self.ids.label_result_timing.text = str(total)
+                self.ids.label_result_timing.font_size = font_timing
                 total -= 1
                 if total < 0:
                     self.ids.label_result_timing.text = "Tempo esgotado"
                     total = 0
+                    self.ids.label_result_timing.font_size = font_text_menu
                     finish_time.play()
                     return False
 

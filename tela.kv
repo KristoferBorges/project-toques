@@ -31,7 +31,7 @@
 
         Button:
             text: 'START'
-            font_size: root.font_title
+            font_size: root.font_start
             color: 1, 0, 0.5, 1
             background_color: 1, 0, 0, 1
             on_release:
@@ -74,13 +74,14 @@
 
 
 <ExibirResultados>
-    FloatLayout:
+    #FloatLayout:
 
-        Image:
-            source: 'app/media/images/pexels-philippe-donn-1257860.jpg'  # Substitua pelo caminho da sua imagem
-            allow_stretch: True  # Esticar a imagem para preencher o espaço
-            keep_ratio: False  # Não manter a proporção original da imagem
-
+        #Image:    
+            #canvas:
+                #Rectangle:
+                    #pos: self.pos
+                    #size: self.size
+                    #source: r'app\\media\\images\\pexels.jpg'
     BoxLayout:
         orientation: 'vertical'
         
@@ -94,7 +95,7 @@
         Label:
             id: label_sexo
             text: ''
-            font_size: root.font_text
+            font_size: root.font_button
             size_hint_y: 0.1
             background_color: 1, 1, 1, 1
             height: dp(40)

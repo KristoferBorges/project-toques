@@ -1,0 +1,143 @@
+#:import RiseInTransition kivy.uix.screenmanager.RiseInTransition
+
+
+<Button>:
+    border: (2, 2, 2, 2)
+    border_width: 9
+    border_color: 1, 1, 0, 1
+    border_radius: [90]
+
+
+<ScreenManager>:
+    transition: RiseInTransition()
+    MenuStart:
+        id: menu_start
+        name: 'menu_start'
+
+    MenuSex:
+        id: menu_sex
+        name: 'menu_sex'
+    
+    ExibirResultados:
+        id: exibir_resultados
+        name: 'exibir_resultados'
+
+
+<MenuStart>:
+    GridLayout:
+        cols: 1
+        spacing: 6
+        padding: 0
+
+        Button:
+            text: 'START'
+            font_size: root.font_start
+            color: 1, 0, 0.5, 1
+            background_color: 1, 0, 0, 1
+            on_release:
+                root.startButton()
+                root.manager.current = 'menu_sex'
+
+
+<MenuSex>
+    GridLayout:
+        cols: 1
+        spacing: 2
+        padding: 10
+
+        Button:
+            text: 'Homem'
+            font_size: root.font_title
+            color: 1, 0, 1, 1
+            background_color: 1, 0, 0, 1
+            on_release:
+                root.manager.current = 'exibir_resultados'
+                root.definitionOfSexMen()
+        
+        Button:
+            text: 'Mulher'
+            font_size: root.font_title
+            color: 1, 0, 1, 1
+            background_color: 1, 0, 0, 1
+            on_release:
+                root.manager.current = 'exibir_resultados'
+                root.definitionOfSexWomen()
+
+        Button:
+            text: 'Random'
+            font_size: root.font_title
+            color: 1, 0, 1, 1
+            background_color: 1, 0, 0, 0
+            on_release:
+                root.manager.current = 'exibir_resultados'
+                root.definitionOfSexRandom()
+
+
+<ExibirResultados>
+    #FloatLayout:
+
+        #Image:    
+            #canvas:
+                #Rectangle:
+                    #pos: self.pos
+                    #size: self.size
+                    #source: r'app\\media\\images\\pexels.jpg'
+    BoxLayout:
+        orientation: 'vertical'
+        
+        Label:
+            id: label_title
+            text: '< R E S U L T A D O >'
+            font_size: root.font_title
+            size_hint_y: 0.5
+            height: dp(10)
+
+        Label:
+            id: label_sexo
+            text: ''
+            font_size: root.font_button
+            size_hint_y: 0.1
+            background_color: 1, 1, 1, 1
+            height: dp(40)
+        
+        Label:
+            id: label_result_timing
+            text: ''
+            font_size: root.font_text_menu
+            height: dp(40)
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(100)  # Altura dos botões
+
+            Button:
+                text: 'Gerar'
+                font_size: root.font_button
+                size_hint_x: 0.3  # Largura máxima de 30%
+                on_release: 
+                    root.whatToDo()
+                    root.changeColor()
+
+            Button:
+                text: 'Voltar'
+                font_size: root.font_button
+                size_hint_x: 0.3  # Largura máxima de 30%
+                on_release: 
+                    root.manager.current = 'menu_sex'
+                    root.clearLabel()
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(100)  # Altura dos botões
+
+            Button:
+                id: button_comecar
+                text: 'COMEÇAR'
+                font_size: root.font_button
+                background_color: 1, 0, 0, 1
+                size_hint_x: 1
+                on_release:
+                    root.startGame()
+
