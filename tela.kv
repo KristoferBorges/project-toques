@@ -86,7 +86,7 @@
         
         Label:
             id: label_result
-            text: 'SEXO'
+            text: ''
             font_size: root.font_text_menu
             height: dp(40)
 
@@ -101,6 +101,7 @@
                 size_hint_x: 0.3  # Largura máxima de 30%
                 on_release: 
                     root.whatToDo()
+                    root.changeColor()
 
             Button:
                 text: 'Voltar'
@@ -110,4 +111,17 @@
                     root.manager.current = 'menu_sex'
                     root.clearLabel()
 
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(100)  # Altura dos botões
+
+            Button:
+                id: button_comecar
+                text: 'COMEÇAR'
+                font_size: root.font_button
+                background_color: 1, 0, 0, 1
+                size_hint_x: 1
+                on_release:
+                    root.startGame()
 
