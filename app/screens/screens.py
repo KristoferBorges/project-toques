@@ -3,7 +3,7 @@ import random
 from pygame import mixer
 from kivy.uix.screenmanager import Screen
 from kivy.properties import NumericProperty
-from app import sound_button, tuin, startGame
+from app import click_button, tuin, startGame, back_button
 
 # Verifica se o usuário está usando Windows
 if platform.system() == "Windows":
@@ -37,7 +37,7 @@ class MenuStart(Screen):
     font_title = NumericProperty(font_title)
 
     def startButton(self):
-        sound_button.play()
+        click_button.play()
 
 
 class SharedData:
@@ -62,7 +62,7 @@ class MenuSex(Screen):
         """
         self.sexo = 'Masculino'
         SharedData.sexo = self.sexo
-        sound_button.play()
+        click_button.play()
     
     
     def definitionOfSexWomen(self):
@@ -71,7 +71,7 @@ class MenuSex(Screen):
         """
         self.sexo = 'Feminino'
         SharedData.sexo = self.sexo
-        sound_button.play()
+        click_button.play()
     
 
     def definitionOfSexRandom(self):
@@ -81,7 +81,7 @@ class MenuSex(Screen):
         listOfSex = ['Masculino', 'Feminino']
         self.sexo = random.choice(listOfSex)
         SharedData.sexo = self.sexo
-        sound_button.play()
+        click_button.play()
 
 class ExibirResultados(Screen):
     """
@@ -120,7 +120,7 @@ class ExibirResultados(Screen):
 
         self.start = False
         SharedData.start = self.start
-        sound_button.play()
+        back_button.play()
         return SharedData.start
     
 
