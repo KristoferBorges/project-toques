@@ -1,9 +1,11 @@
 import platform
 import random
+from time import sleep
 from pygame import mixer
 from kivy.uix.screenmanager import Screen
+from kivy.clock import Clock
 from kivy.properties import NumericProperty
-from app import click_button, tuin, startGame, back_button
+from app import click_button, tuin, startGame, back_button, finish_time
 
 # Verifica se o usuário está usando Windows
 if platform.system() == "Windows":
@@ -87,6 +89,11 @@ class ExibirResultados(Screen):
     """
     --> Menu com os resultados das variantes.
     """
+
+    def __init__(self, **kw):
+        super().__init__(**kw)
+        self.listOfRounds = {}
+
     font_column = NumericProperty(font_column)
     font_row = NumericProperty(font_row)
     font_button = NumericProperty(font_button)
@@ -114,11 +121,16 @@ class ExibirResultados(Screen):
         """
         --> Limpa os labels e altera a variável de start.
         """
+        global total
+
         self.ids.label_sexo.text = ''
-        self.ids.label_result.text = ''
+        self.ids.label_result_timing.text = ''
         self.ids.button_comecar.background_color = 1, 0, 0, 1
+        self.ids.label_title.text = '< R E S U L T A D O >'
 
         self.start = False
+        # Variável de contagem regressiva resetado
+        total = 0
         SharedData.start = self.start
         back_button.play()
         return SharedData.start
@@ -128,18 +140,23 @@ class ExibirResultados(Screen):
         """
         --> Define o que será feito em cada round.
         """
-        listOfRounds = {}
+        global total
+
+        # Variável de contagem regressiva resetado
+        total = 0
+
+        self.listOfRounds = {}
         listOfOptions = ['Beijos', 'Mordidas-Coxa', 'Mordidas-Bunda', 'Chupões', 'Chupões-X', 'Lambidas-Pescoço', 'Lambidas', 'Roçar']
         rounds = self.definitionOfRounds()
         
         for round in range(rounds):
             time = self.definitionOfTime()
             round = random.choice(listOfOptions)
-            listOfRounds[round] = time
+            self.listOfRounds[round] = time
         print(SharedData.sexo)
-        print(listOfRounds)
+        print(self.listOfRounds)
 
-        formatted_text = "\n".join([f"{key}: {value} Segundos" for key, value in listOfRounds.items()])
+        formatted_text = "\n".join([f"{key}: {value} Segundos" for key, value in self.listOfRounds.items()])
 
         if SharedData.sexo == 'Feminino':
             self.ids.label_sexo.color = [1, 0.3, 0.3, 1]
@@ -147,13 +164,16 @@ class ExibirResultados(Screen):
         else:
             self.ids.label_sexo.color = [0, 1, 1, 1]
             self.ids.label_sexo.text = SharedData.sexo
-        self.ids.label_result.text = formatted_text
+        self.ids.label_result_timing.text = formatted_text
+
+        # Redefinição do titulo
+        self.ids.label_title.text = '< R E S U L T A D O >'
 
         self.start = True
         SharedData.start = self.start
 
         tuin.play()
-        return listOfRounds, SharedData.start
+        return self.listOfRounds, SharedData.start
     
     def changeColor(self):
         """
@@ -168,6 +188,28 @@ class ExibirResultados(Screen):
         """
         if SharedData.start == True:
             startGame.play()
+            self.ids.label_sexo.text = ''
+            self.ids.label_result_timing.text = ''
+            self.ids.button_comecar.background_color = 1, 0, 0, 1
+            self.ids.label_title.text = 'J O G A N D O'
+
+            global total  # Declare total como uma variável global
+            total = sum(self.listOfRounds.values())
+
+            def atualizar_contagem(dt):
+                global total  # Acesse a variável global
+                self.ids.label_result_timing.text = str(total)
+                total -= 1
+                if total < 0:
+                    self.ids.label_result_timing.text = "Tempo esgotado"
+                    total = 0
+                    finish_time.play()
+                    return False
+
+            Clock.schedule_interval(atualizar_contagem, 1)
+
+            SharedData.start = False
+            
         else:
             pass
         
