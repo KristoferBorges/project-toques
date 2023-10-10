@@ -1,3 +1,4 @@
+import os
 import platform
 import random
 from time import sleep
@@ -53,7 +54,6 @@ class SharedData:
     sexo = None
     start = None
 
-
 class MenuSex(Screen):
     """
     --> Menu com as opções de sexo, Masculino, Feminino e aleatório.
@@ -98,11 +98,11 @@ class ExibirResultados(Screen):
     """
     --> Menu com os resultados das variantes.
     """
-
     def __init__(self, **kw):
         super().__init__(**kw)
         self.listOfRounds = {}
-
+        self.image_path = 'app/media/images/pexels.jpg'
+        
     font_column = NumericProperty(font_column)
     font_row = NumericProperty(font_row)
     font_button = NumericProperty(font_button)
@@ -138,7 +138,7 @@ class ExibirResultados(Screen):
         self.ids.label_result_timing.text = ''
         self.ids.button_comecar.background_color = 1, 0, 0, 1
         self.ids.label_title.text = '< R E S U L T A D O >'
-
+        
         self.start = False
         # Variável de contagem regressiva resetado
         total = 0
@@ -152,7 +152,7 @@ class ExibirResultados(Screen):
         --> Define o que será feito em cada round.
         """
         global total
-
+        
         # Variável de contagem regressiva resetado
         total = 0
 
