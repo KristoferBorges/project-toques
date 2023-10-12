@@ -160,7 +160,7 @@ class ExibirResultados(Screen):
         listOfOptions = [
             'Beijos', 'Mordidas', 'Mordidas-Pescoço', 'Mordidas-Bunda', 'Chupões', 
             'Chupões-X', 'Lambidas-X', 'Lambidas-Pescoço', 'Lambidas', 'Roçar',
-            'Oral', 'Posição_69', 'Drink', 'DJ/Punheta'
+            'Oral', 'Posição_69', 'Drink', 'DJ/Punheta', 'Massagem'
             ]
         rounds = self.definitionOfRounds()
         
