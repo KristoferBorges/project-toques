@@ -158,9 +158,9 @@ class ExibirResultados(Screen):
 
         self.listOfRounds = {}
         listOfOptions = [
-            'Beijos', 'Mordidas', 'Mordidas-Pescoço', 'Mordidas-Bunda', 'Chupões', 
-            'Chupões-X', 'Lambidas-X', 'Lambidas-Pescoço', 'Lambidas', 'Roçar',
-            'Oral', 'Posição_69', 'Drink', 'DJ/Punheta', 'Massagem'
+            "Beber", "Sexo Oral", "Masturbação", "Arrepio", "Beijos", "Chupão", "Mordida", "Lambida", "Massagem", "Cafuné", "Beber", "Beber", "Beber",
+            "Sarrar", "FotoSexyS2", "FotoSexy", "2 RoundsAlgemado(a)", "DeQuatro", "Por cima", "Sentada", "Cavalgada", "DeLado", "69",
+            "Beber", "Beber", "Beber", "Vídeo", "VídeoS2"
             ]
         rounds = self.definitionOfRounds()
         
