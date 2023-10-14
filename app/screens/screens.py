@@ -51,9 +51,40 @@ class MenuStart(Screen):
 
 
 class SharedData:
-    escolhaSexo = None
-    sexo = None
+    """
+    --> Classe para compartilhar dados entre as telas.
+    """
     start = None
+    escolhaSexo = None
+    difficult = None
+    sexo = None
+    
+
+
+class DifficultyMode(Screen):
+    font_column = NumericProperty(font_column)
+    font_row = NumericProperty(font_row)
+    font_button = NumericProperty(font_button)
+    font_text = NumericProperty(font_text)
+    font_text_menu = NumericProperty(font_text_menu)
+    font_title = NumericProperty(font_title)
+    font_start = NumericProperty(font_start)
+    font_timing = NumericProperty(font_timing)
+    
+    def definitionOfDifficultyEasy(self):
+        SharedData.difficult = 'Easy'
+        pass
+
+
+    def definitionOfDifficultyHard(self):
+        SharedData.difficult = 'Hard'
+        pass
+
+
+    def definitionOfDifficultyExtreme(self):
+        SharedData.difficult = 'Extreme'
+        pass
+
 
 class MenuSex(Screen):
     """
@@ -181,11 +212,13 @@ class ExibirResultados(Screen):
             SharedData.sexo = 'Feminino'
             self.ids.label_sexo.color = [1, 0.3, 0.3, 1]
             self.ids.label_sexo.text = SharedData.sexo
+
         elif SharedData.escolhaSexo == 'Masculino':
             SharedData.sexo = 'Masculino'
             self.ids.label_sexo.color = [0, 1, 1, 1]
             self.ids.label_sexo.text = SharedData.sexo
         elif SharedData.escolhaSexo == 'Random':
+
             SharedData.sexo = random.choice(['Feminino', 'Masculino'])
             if SharedData.sexo == 'Feminino':
                 self.ids.label_sexo.color = [1, 0.3, 0.3, 1]
