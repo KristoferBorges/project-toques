@@ -22,6 +22,10 @@
         id: exibir_resultados
         name: 'exibir_resultados'
 
+    DifficultyMode:
+        id: difficulty_mode
+        name: 'difficulty_mode'
+
 
 <MenuStart>:
     GridLayout:
@@ -36,7 +40,42 @@
             background_color: 1, 0, 0, 1
             on_release:
                 root.startButton()
-                root.manager.current = 'menu_sex'
+                root.manager.current = 'difficulty_mode'
+
+
+<DifficultyMode>:
+    GridLayout:
+        cols: 1
+        spacing: 6
+        padding: 0
+
+        Button:
+            text: 'Easy'
+            font_size: root.font_title
+            color: 1, 0, 1, 1
+            background_color: 0, 0.8, 0, 1
+
+            on_release:
+                root.manager.current = 'exibir_resultados'
+                root.definitionOfDifficultyEasy()
+        
+        Button:
+            text: 'Hard'
+            font_size: root.font_title
+            color: 1, 0, 1, 1
+            background_color: 1, 0, 0, 1
+            on_release:
+                root.manager.current = 'exibir_resultados'
+                root.definitionOfDifficultyHard()
+
+        Button:
+            text: 'Extreme'
+            font_size: root.font_title
+            color: 1, 0, 1, 1
+            background_color: 1.3, 0, 0, 1
+            on_release:
+                root.manager.current = 'exibir_resultados'
+                root.definitionOfDifficultyeExtreme()
 
 
 <MenuSex>
