@@ -51,6 +51,7 @@ class MenuStart(Screen):
 
 
 class SharedData:
+    escolhaSexo = None
     sexo = None
     start = None
 
@@ -72,7 +73,7 @@ class MenuSex(Screen):
         --> Define o sexo como Masculino ao clicar no botão.
         """
         self.sexo = 'Masculino'
-        SharedData.sexo = self.sexo
+        SharedData.escolhaSexo = self.sexo
         click_button.play()
     
     
@@ -81,7 +82,7 @@ class MenuSex(Screen):
         --> Define o sexo como Feminino ao clicar no botão.
         """
         self.sexo = 'Feminino'
-        SharedData.sexo = self.sexo
+        SharedData.escolhaSexo = self.sexo
         click_button.play()
     
 
@@ -89,9 +90,9 @@ class MenuSex(Screen):
         """
         --> Define o sexo como aleatório ao clicar no botão.
         """
-        listOfSex = ['Masculino', 'Feminino']
+        listOfSex = ['Random']
         self.sexo = random.choice(listOfSex)
-        SharedData.sexo = self.sexo
+        SharedData.escolhaSexo = self.sexo
         click_button.play()
 
 class ExibirResultados(Screen):
@@ -168,19 +169,28 @@ class ExibirResultados(Screen):
             time = self.definitionOfTime()
             round = random.choice(listOfOptions)
             self.listOfRounds[round] = time
-        print(SharedData.sexo)
+        print(SharedData.escolhaSexo)
         print(self.listOfRounds)
         
         printTotal = 0
         for valor in self.listOfRounds.values():
             printTotal += valor
         formatted_text = "\n".join([f"{key} = {value} Seg.." for key, value in self.listOfRounds.items()]) + f"\n\nTotal = {printTotal} Seg.."
-        
-        if SharedData.sexo == 'Feminino':
+
+        if SharedData.escolhaSexo == 'Feminino':
+            SharedData.sexo = 'Feminino'
             self.ids.label_sexo.color = [1, 0.3, 0.3, 1]
             self.ids.label_sexo.text = SharedData.sexo
-        else:
+        elif SharedData.escolhaSexo == 'Masculino':
+            SharedData.sexo = 'Masculino'
             self.ids.label_sexo.color = [0, 1, 1, 1]
+            self.ids.label_sexo.text = SharedData.sexo
+        elif SharedData.escolhaSexo == 'Random':
+            SharedData.sexo = random.choice(['Feminino', 'Masculino'])
+            if SharedData.sexo == 'Feminino':
+                self.ids.label_sexo.color = [1, 0.3, 0.3, 1]
+            else:
+                self.ids.label_sexo.color = [0, 1, 1, 1]
             self.ids.label_sexo.text = SharedData.sexo
         self.ids.label_result_timing.text = formatted_text
 
