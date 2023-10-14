@@ -73,16 +73,19 @@ class DifficultyMode(Screen):
     
     def definitionOfDifficultyEasy(self):
         SharedData.difficult = 'Easy'
+        click_button.play()
         pass
 
 
     def definitionOfDifficultyHard(self):
         SharedData.difficult = 'Hard'
+        click_button.play()
         pass
 
 
     def definitionOfDifficultyExtreme(self):
         SharedData.difficult = 'Extreme'
+        click_button.play()
         pass
 
 
@@ -125,6 +128,11 @@ class MenuSex(Screen):
         self.sexo = random.choice(listOfSex)
         SharedData.escolhaSexo = self.sexo
         click_button.play()
+
+    def backButton(self):
+        back_button.play()
+        pass
+
 
 class ExibirResultados(Screen):
     """
@@ -189,11 +197,13 @@ class ExibirResultados(Screen):
         total = 0
 
         self.listOfRounds = {}
-        listOfOptions = [
-            "Beber", "Sexo Oral", "Masturbação", "Arrepio", "Beijos", "Chupão", "Mordida", "Lambida", "Massagem", "Cafuné", "Beber", "Beber", "Beber",
-            "Sarrar", "FotoSexyS2", "FotoSexy", "2 RoundsAlgemado(a)", "DeQuatro", "Por cima", "Sentada", "Cavalgada", "DeLado", "69",
-            "Beber", "Beber", "Beber", "Vídeo", "VídeoS2"
-            ]
+        if SharedData.difficult == 'Easy':
+            listOfOptions = ['Easy']
+        elif SharedData.difficult == 'Hard':
+            listOfOptions = ['Hard']
+        elif SharedData.difficult == 'Extreme':
+            listOfOptions = ['Extreme']
+
         rounds = self.definitionOfRounds()
         
         for round in range(rounds):

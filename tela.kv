@@ -56,7 +56,7 @@
             background_color: 0, 0.8, 0, 1
 
             on_release:
-                root.manager.current = 'exibir_resultados'
+                root.manager.current = 'menu_sex'
                 root.definitionOfDifficultyEasy()
         
         Button:
@@ -65,7 +65,7 @@
             color: 1, 0, 1, 1
             background_color: 1, 0, 0, 1
             on_release:
-                root.manager.current = 'exibir_resultados'
+                root.manager.current = 'menu_sex'
                 root.definitionOfDifficultyHard()
 
         Button:
@@ -74,8 +74,8 @@
             color: 1, 0, 1, 1
             background_color: 1.3, 0, 0, 1
             on_release:
-                root.manager.current = 'exibir_resultados'
-                root.definitionOfDifficultyeExtreme()
+                root.manager.current = 'menu_sex'
+                root.definitionOfDifficultyExtreme()
 
 
 <MenuSex>
@@ -106,10 +106,18 @@
             text: 'Random'
             font_size: root.font_title
             color: 1, 0, 1, 1
-            background_color: 1, 0, 0, 0
+            background_color: 1, 0, 0, 1
             on_release:
                 root.manager.current = 'exibir_resultados'
                 root.definitionOfSexRandom()
+
+        Button:
+            text: 'Voltar'
+            font_size: root.font_title
+            size_hint_y: 0.5
+            on_release:
+                root.backButton()
+                root.manager.current = 'difficulty_mode'
 
 
 <ExibirResultados>
