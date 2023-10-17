@@ -198,11 +198,16 @@ class ExibirResultados(Screen):
 
         self.listOfRounds = {}
         if SharedData.difficult == 'Easy':
-            listOfOptions = ['Easy']
+            listOfOptions = [
+                'Beijos', 'Beijos', 'Massagem', 'TirarPeça', 'Drink-3', 'Drink-3', 'Arrepio', 'Cafuné'
+                ]
         elif SharedData.difficult == 'Hard':
-            listOfOptions = ['Hard']
+            listOfOptions = [
+                'Beijos', 'Beijos-Pescoço', 'Sexo-Oral', 'Algemar', 'Parte-Do-Corpo(Drink)', 
+                'Drink-5', 'Drink-5', 'FotoSexy', 'FotoSexS2', 'VideoS2'
+                ]
         elif SharedData.difficult == 'Extreme':
-            listOfOptions = ['Extreme']
+            listOfOptions = ['Beijos-Pescoço', 'Sexo-Oral']
 
         rounds = self.definitionOfRounds()
         
