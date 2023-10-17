@@ -207,7 +207,9 @@ class ExibirResultados(Screen):
                 'Drink-5', 'Drink-5', 'FotoSexy', 'FotoSexS2', 'VideoS2'
                 ]
         elif SharedData.difficult == 'Extreme':
-            listOfOptions = ['Beijos-Pescoço', 'Sexo-Oral']
+            listOfOptions = [
+                'Beijos-Pescoço', 'Sexo-Oral'
+                ]
 
         rounds = self.definitionOfRounds()
         
