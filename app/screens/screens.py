@@ -156,7 +156,7 @@ class ExibirResultados(Screen):
         """
         --> Define a quantidade de rounds.
         """
-        rounds = random.randint(1, 3)
+        rounds = random.randint(1, 1)
         return rounds
 
 
@@ -164,7 +164,7 @@ class ExibirResultados(Screen):
         """
         --> Define o tempo de cada round.
         """
-        time = random.randint(10, 40)
+        time = random.randint(14, 100)
         return time
 
 
@@ -196,20 +196,58 @@ class ExibirResultados(Screen):
         # Variável de contagem regressiva resetado
         total = 0
 
+        if SharedData.escolhaSexo == 'Feminino':
+            SharedData.sexo = 'Feminino'
+            self.ids.label_sexo.color = [1, 0.3, 0.3, 1]
+            self.ids.label_sexo.text = SharedData.sexo
+
+        elif SharedData.escolhaSexo == 'Masculino':
+            SharedData.sexo = 'Masculino'
+            self.ids.label_sexo.color = [0, 1, 1, 1]
+            self.ids.label_sexo.text = SharedData.sexo
+
+        elif SharedData.escolhaSexo == 'Random':
+            SharedData.sexo = random.choice(['Feminino', 'Masculino'])
+            if SharedData.sexo == 'Feminino':
+                self.ids.label_sexo.color = [1, 0.3, 0.3, 1]
+            else:
+                self.ids.label_sexo.color = [0, 1, 1, 1]
+            self.ids.label_sexo.text = SharedData.sexo
+
         self.listOfRounds = {}
-        if SharedData.difficult == 'Easy':
+        if SharedData.difficult == 'Easy' and SharedData.sexo == 'Feminino':
             listOfOptions = [
-                'Beijos', 'Beijos', 'Massagem', 'TirarPeça', 'Drink-3', 'Drink-3', 'Arrepio', 'Cafuné'
+                'Beijos-Pescoço', 'Beijos', 'Massagem', 'TirarPeça', 'Drink-3', 'Drink-3', 'Arrepio', 'Cafuné', 
+                'Arrepio', 'Mordidas-Pescoço'
                 ]
-        elif SharedData.difficult == 'Hard':
+        elif SharedData.difficult == 'Easy' and SharedData.sexo == 'Masculino':
             listOfOptions = [
-                'Beijos', 'Beijos-Pescoço', 'Sexo-Oral', 'Algemar', 'Parte-Do-Corpo(Drink)', 
-                'Drink-5', 'Drink-5', 'FotoSexy', 'FotoSexS2', 'VideoS2'
+                'Beijos-Pescoço', 'Beijos', 'Massagem', 'TirarPeça', 'Drink-3', 'Drink-3', 'Arrepio', 'Cafuné', 
+                'Arrepio', 'Mordidas-Pescoço'
                 ]
-        elif SharedData.difficult == 'Extreme':
+            
+        elif SharedData.difficult == 'Hard' and SharedData.sexo == 'Feminino':
             listOfOptions = [
-                'Beijos-Pescoço', 'Oral-Em-Pé', 'Oral-Sentado(a)', 'De-Quatro', 'De-Costas', 'Tesoura-Aberta', 'Por-Cima', 'Na-Parede', 'Drink-5', 'Drink-5', 'Drink-5'
+                'Beijos', 'Beijos-Pescoço', 'Sexo-Oral', 'Algemar', 'Jogo - ParteDoCorpo', 
+                'Drink-5', 'Drink-5', 'FotoSexy', 'FotoSexS2', 'VideoS2', 'Mordidas-Pescoço', 'Roçar'
                 ]
+        elif SharedData.difficult == 'Hard' and SharedData.sexo == 'Masculino':
+            listOfOptions = [
+                'Beijos', 'Beijos-Pescoço', 'Sexo-Oral', 'Algemar', 'Jogo - ParteDoCorpo', 
+                'Drink-5', 'Drink-5', 'FotoSexy', 'FotoSexS2', 'VideoS2', 'Mordidas-Pescoço', 'Roçar'
+                ]
+            
+        elif SharedData.difficult == 'Extreme' and SharedData.sexo == 'Feminino':
+            listOfOptions = [
+                'Beijos-Pescoço', 'Oral-Em-Pé', 'Oral-Sentada', 'De-Quatro', 'De-Costas', 'Tesoura-Aberta', 
+                'Por-Cima', 'Na-Parede', 'Drink-5', 'Drink-5', 'Drink-5'
+                ]
+        elif SharedData.difficult == 'Extreme' and SharedData.sexo == 'Masculino':
+            listOfOptions = [
+                'Beijos-Pescoço', 'Oral-Em-Pé', 'Oral-Sentado', 'De-Quatro', 'De-Costas', 'Tesoura-Aberta', 
+                'Por-Cima', 'Na-Parede', 'Drink-5', 'Drink-5', 'Drink-5'
+                ]
+
 
         rounds = self.definitionOfRounds()
         
@@ -220,28 +258,7 @@ class ExibirResultados(Screen):
         print(SharedData.escolhaSexo)
         print(self.listOfRounds)
         
-        printTotal = 0
-        for valor in self.listOfRounds.values():
-            printTotal += valor
-        formatted_text = "\n".join([f"{key} = {value} Seg.." for key, value in self.listOfRounds.items()]) + f"\n\nTotal = {printTotal} Seg.."
-
-        if SharedData.escolhaSexo == 'Feminino':
-            SharedData.sexo = 'Feminino'
-            self.ids.label_sexo.color = [1, 0.3, 0.3, 1]
-            self.ids.label_sexo.text = SharedData.sexo
-
-        elif SharedData.escolhaSexo == 'Masculino':
-            SharedData.sexo = 'Masculino'
-            self.ids.label_sexo.color = [0, 1, 1, 1]
-            self.ids.label_sexo.text = SharedData.sexo
-        elif SharedData.escolhaSexo == 'Random':
-
-            SharedData.sexo = random.choice(['Feminino', 'Masculino'])
-            if SharedData.sexo == 'Feminino':
-                self.ids.label_sexo.color = [1, 0.3, 0.3, 1]
-            else:
-                self.ids.label_sexo.color = [0, 1, 1, 1]
-            self.ids.label_sexo.text = SharedData.sexo
+        formatted_text = "\n".join([f"{key} = {value} Seg.." for key, value in self.listOfRounds.items()])
         self.ids.label_result_timing.text = formatted_text
 
         # Redefinição do titulo
