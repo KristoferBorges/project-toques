@@ -165,7 +165,12 @@ class ExibirResultados(Screen):
         """
         --> Define o tempo de cada round.
         """
-        time = random.randint(14, 100)
+        if SharedData.difficult == 'Easy':
+            time = random.randint(14, 50)
+        elif SharedData.difficult == 'Hard':
+            time = random.randint(30, 70)
+        elif SharedData.difficult == 'Extreme':
+            time = random.randint(30, 100)
         return time
 
 
