@@ -152,6 +152,7 @@ class ExibirResultados(Screen):
     font_start = NumericProperty(font_start)
     font_timing = NumericProperty(font_timing)
 
+
     def definitionOfRounds(self):
         """
         --> Define a quantidade de rounds.
@@ -175,10 +176,11 @@ class ExibirResultados(Screen):
         global total
 
         self.ids.label_sexo.text = ''
+        self.ids.label_difficult.text = ''
         self.ids.label_result_timing.text = ''
         self.ids.button_comecar.background_color = 1, 0, 0, 1
         self.ids.label_title.text = '< R E S U L T A D O >'
-        
+
         self.start = False
         # Variável de contagem regressiva resetado
         total = 0
@@ -218,36 +220,45 @@ class ExibirResultados(Screen):
         if SharedData.difficult == 'Easy' and SharedData.sexo == 'Feminino':
             listOfOptions = [
                 'Beijos-Pescoço', 'Beijos', 'Massagem', 'TirarPeça', 'Drink-3', 'Drink-3', 'Arrepio', 'Cafuné', 
-                'Arrepio', 'Mordidas-Pescoço'
+                'Arrepio', 'Mordidas-Pescoço', 'Girar3x'
                 ]
         elif SharedData.difficult == 'Easy' and SharedData.sexo == 'Masculino':
             listOfOptions = [
                 'Beijos-Pescoço', 'Beijos', 'Massagem', 'TirarPeça', 'Drink-3', 'Drink-3', 'Arrepio', 'Cafuné', 
-                'Arrepio', 'Mordidas-Pescoço'
+                'Arrepio', 'Mordidas-Pescoço', 'Girar3x'
                 ]
             
         elif SharedData.difficult == 'Hard' and SharedData.sexo == 'Feminino':
             listOfOptions = [
                 'Beijos', 'Beijos-Pescoço', 'Sexo-Oral', 'Algemar', 'Jogo - ParteDoCorpo', 
-                'Drink-5', 'Drink-5', 'FotoSexy', 'FotoSexS2', 'VideoS2', 'Mordidas-Pescoço', 'Roçar'
+                'Drink-5', 'Drink-5', 'FotoSexy', 'FotoSexS2', 'VideoS2', 'Mordidas-Pescoço', 'Roçar', 'Girar3x',
+                'Oral-Com-Gelo', 'Boquete-Com-Gelo'
                 ]
         elif SharedData.difficult == 'Hard' and SharedData.sexo == 'Masculino':
             listOfOptions = [
                 'Beijos', 'Beijos-Pescoço', 'Sexo-Oral', 'Algemar', 'Jogo - ParteDoCorpo', 
-                'Drink-5', 'Drink-5', 'FotoSexy', 'FotoSexS2', 'VideoS2', 'Mordidas-Pescoço', 'Roçar'
+                'Drink-5', 'Drink-5', 'FotoSexy', 'FotoSexS2', 'VideoS2', 'Mordidas-Pescoço', 'Roçar', 'Girar3x',
+                'Oral-Com-Gelo',
                 ]
             
         elif SharedData.difficult == 'Extreme' and SharedData.sexo == 'Feminino':
             listOfOptions = [
                 'Beijos-Pescoço', 'Oral-Em-Pé', 'Oral-Sentada', 'De-Quatro', 'De-Costas', 'Tesoura-Aberta', 
-                'Por-Cima', 'Na-Parede', 'Drink-5', 'Drink-5', 'Drink-5'
+                'Por-Cima', 'Na-Parede', 'Drink-5', 'Drink-5', 'Drink-5',
                 ]
         elif SharedData.difficult == 'Extreme' and SharedData.sexo == 'Masculino':
             listOfOptions = [
                 'Beijos-Pescoço', 'Oral-Em-Pé', 'Oral-Sentado', 'De-Quatro', 'De-Costas', 'Tesoura-Aberta', 
-                'Por-Cima', 'Na-Parede', 'Drink-5', 'Drink-5', 'Drink-5'
+                'Por-Cima', 'Na-Parede', 'Drink-5', 'Drink-5', 'Drink-5',
                 ]
 
+        if SharedData.difficult == 'Easy':
+            self.ids.label_difficult.color = [0, 1, 0, 1]
+        elif SharedData.difficult == 'Hard':
+            self.ids.label_difficult.color = [1, 0, 0, 1]
+        elif SharedData.difficult == 'Extreme':
+            self.ids.label_difficult.color = [1, 0, 1, 1]
+        self.ids.label_difficult.text = SharedData.difficult
 
         rounds = self.definitionOfRounds()
         
